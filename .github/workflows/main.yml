@@ -23,10 +23,13 @@ jobs:
       - name: Install TiddlyWiki ⬇️
         run: npm install -g tiddlywiki
 
-      - name: Build TiddlyWiki 🏗️
-        run: tiddlywiki . --build index
-        # If your wiki is in a subfolder (e.g., 'mywiki'), use:
-        # tiddlywiki mywiki --build index
+      - name: Build TiddlyWiki (Clean) 🏗️
+        # We delete the 'tiddlyweb' and 'filesystem' plugins from memory before building.
+        # This prevents the wiki from trying to sync to the server (which causes the 405 error).
+        run: |
+          tiddlywiki . \
+            --deletetiddlers "[[$:/plugins/tiddlywiki/tiddlyweb]] [[$:/plugins/tiddlywiki/filesystem]]" \
+            --build index
 
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v3
