@@ -3,7 +3,9 @@
     "plugins": [
         "tiddlywiki/tiddlyweb",
         "tiddlywiki/filesystem",
-        "tiddlywiki/highlight"
+        "tiddlywiki/highlight",
+		"tiddlywiki/qrcode",
+		"tiddlywiki/menubar"
     ],
     "themes": [
         "tiddlywiki/vanilla",
